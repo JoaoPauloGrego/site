@@ -1,8 +1,9 @@
-// src/App.js
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Item from './view/ProductList/ProductList';
 import Header from './view/Header/Header';
+import ProductDetails from './view/ProductDetails/ProductDetails';
 import { GlobalStyle } from './styles/StyledComponents';
 
 const Container = styled.div`
@@ -32,52 +33,77 @@ const products = [
     id: 1,
     name: "Camisa Social",
     price: 99.90,
-    image: ""
+    image: "/images/camisa-social.jpg",
+    description: "Camisa social 100% algodão, ideal para ocasiões formais."
   },
   {
     id: 2,
     name: "Camisa Regata",
     price: 99.00,
-    image: ""
+    image: "/images/camisa-regata.jpg",
+    description: "Camisa regata leve e confortável para dias quentes."
   },
   {
     id: 3,
     name: "Blusa",
     price: 99.90,
-    image: ""
+    image: "/images/blusa.jpg",
+    description: "Blusa de frio com tecido de alta qualidade."
   },
   {
     id: 4,
     name: "Calça",
     price: 99.50,
-    image: ""
+    image: "/images/calca.jpg",
+    description: "Calça jeans moderna com corte ajustado."
   }
 ];
 
 function App() {
   const [cartItems, setCartItems] = React.useState(0);
   
+  const handleAddToCart = () => {
+    setCartItems(c => c + 1);
+  };
+  
   return (
-    <>
+    <Router>
       <GlobalStyle />
       <Header cartCount={cartItems} />
       
       <MainContent>
-        <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Produtos em Destaque</h2>
-        
-        <Container>
-          {products.map(product => (
-            <Item 
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-              onAddToCart={() => setCartItems(c => c + 1)}
-            />
-          ))}
-        </Container>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Produtos em Destaque</h2>
+              
+              <Container>
+                {products.map(product => (
+                  <Item 
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.image}
+                    onAddToCart={handleAddToCart}
+                  />
+                ))}
+              </Container>
+            </>
+          } />
+          
+          <Route 
+            path="/product/:id" 
+            element={
+              <ProductDetails 
+                products={products} 
+                onAddToCart={handleAddToCart} 
+              />
+            } 
+          />
+        </Routes>
       </MainContent>
-    </>
+    </Router>
   );
 }
 

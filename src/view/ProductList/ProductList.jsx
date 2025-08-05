@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ProductCard = styled.div`
   border: 1px solid #ddd;
@@ -46,13 +47,24 @@ const AddButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.3s;
+  margin-bottom: 5px;
+  width: 100%;
   
   &:hover {
     background-color: #21867a;
   }
 `;
 
-const Item = ({ onAddToCart, image, name, price }) => {
+const DetailsButton = styled(AddButton)`
+  background-color: #e0e0e0;
+  color: #333;
+
+  &:hover {
+    background-color: #d0d0d0;
+  }
+`;
+
+const Item = ({ id, onAddToCart, image, name, price }) => {
   return (
     <ProductCard>
       <ProductImage 
@@ -61,7 +73,14 @@ const Item = ({ onAddToCart, image, name, price }) => {
       />
       <ProductTitle>{name}</ProductTitle>
       <ProductPrice>R$ {price.toFixed(2)}</ProductPrice>
-      <AddButton onClick={onAddToCart}>Adicionar ao Carrinho</AddButton>
+      
+      <AddButton onClick={onAddToCart}>
+        Adicionar ao Carrinho
+      </AddButton>
+      
+      <Link to={`/product/${id}`}>
+        <DetailsButton>Detalhes</DetailsButton>
+      </Link>
     </ProductCard>
   );
 };
