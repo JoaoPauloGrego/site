@@ -33,29 +33,29 @@ const products = [
     id: 1,
     name: "Camisa Social",
     price: 99.90,
-    image: "/images/camisa-social.jpg",
+    image: "/images/camisa-social.png",
     description: "Camisa social 100% algodão, ideal para ocasiões formais."
   },
   {
     id: 2,
     name: "Camisa Regata",
     price: 99.00,
-    image: "/images/camisa-regata.jpg",
+    image: "/images/camiseta-regata.png",
     description: "Camisa regata leve e confortável para dias quentes."
   },
   {
     id: 3,
     name: "Blusa",
     price: 99.90,
-    image: "/images/blusa.jpg",
+    image: "/images/blusa.png",
     description: "Blusa de frio com tecido de alta qualidade."
   },
   {
     id: 4,
     name: "Calça",
     price: 99.50,
-    image: "/images/calca.jpg",
-    description: "Calça jeans moderna com corte ajustado."
+    image: "/images/calça.png",
+    description: "Calça moderna com corte ajustado."
   }
 ];
 
